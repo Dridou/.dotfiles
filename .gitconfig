@@ -1,0 +1,19 @@
+[core]
+    excludesfiles = ~/.gitignore
+[color]
+    ui = auto
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+[commit]
+    verbose = true
+[pull]
+    rebase = true
+[branch]
+    autosetuprebase = always
+[push]
+    default = simple
+[user]
+    name = Adrien NEBON-CARLE
+    email = adrien.nebon-carle@epita.fr
