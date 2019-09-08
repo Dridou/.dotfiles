@@ -1,15 +1,12 @@
 call plug#begin('~/.vim/plugged')
 Plug 'rhysd/vim-clang-format'
+Plug 'tmhedberg/SimpylFold'
 Plug 'Valloric/YouCompleteMe'
-"Plug 'junegunn/seoul256.vim'
-"Plug 'junegunn/goyo.vim'
-"Plug 'junegunn/limelight.vim'
-"Plug 'pangloss/vim-javascript'
-"Plug 'othree/html5.vim'
-"Plug 'vim-syntastic/syntastic'
+Plug 'nvie/vim-flake8'
+Plug 'vim-syntastic/syntastic'
+Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 call plug#end()
 
-Plug 'Valloric/YouCompleteMe'
 let g:plug_timeout = 1000
 " Plug 'pangloss/vim-javascript'
 "let g:javascript_plugin_jsdoc = 1
@@ -24,83 +21,6 @@ let g:plug_timeout = 1000
 filetype plugin on
 filetype indent on
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"==================    CLANG-FORMAT    ======================
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:clang_format#style_options = {
-            \"AlignAfterOpenBracket" : "Align",
-            \"AlignConsecutiveAssignments" : "false",
-            \"AlignConsecutiveDeclarations" : "false",
-            \"AlignEscapedNewlines" : "Right",
-            \"AlignOperands" : "false",
-            \"AlignTrailingComments" : "false",
-            \"AllowAllParametersOfDeclarationOnNextLine" : "false",
-            \"AllowShortBlocksOnASingleLine" : "false",
-            \"AllowShortCaseLabelsOnASingleLine" : "false",
-            \"AllowShortFunctionsOnASingleLine" : "None",
-            \"AllowShortIfStatementsOnASingleLine" : "false",
-            \"AlwaysBreakAfterReturnType" : "None",
-            \"AlwaysBreakBeforeMultilineStrings" : "false",
-            \"AlwaysBreakTemplateDeclarations" : "Yes",
-            \"BinPackArguments" : "true",
-            \"BinPackParameters" : "true",
-            \"BreakBeforeBraces" : "Custom",
-            \"BraceWrapping" : {
-            \"    AfterEnum" : "true",
-            \"    AfterClass" : "true",
-            \"    AfterControlStatement" : "true",
-            \"    AfterFunction" : "true",
-            \"    AfterNamespace" : "true",
-            \"    AfterStruct" : "true",
-            \"    AfterUnion" : "true",
-            \"    AfterExternBlock" : "true",
-            \"    BeforeCatch" : "false",
-            \"    BeforeElse" : "false",
-            \"    IndentBraces" : "false",
-            \"    SplitEmptyFunction" : "false",
-            \"    SplitEmptyRecord" : "false",
-            \"    SplitEmptyNamespace" : "false",},
-            \"BreakBeforeBinaryOperators" : "NonAssignment",
-            \"BreakBeforeTernaryOperators" : "true",
-            \"BreakConstructorInitializers" : "BeforeComma",
-            \"BreakInheritanceList" : "BeforeComma",
-            \"BreakStringLiterals" : "true",
-            \"ColumnLimit" : 80,
-            \"CompactNamespaces" : "false",
-            \"ConstructorInitializerAllOnOneLineOrOnePerLine" : "false",
-            \"ConstructorInitializerIndentWidth" : 4,
-            \"Cpp11BracedListStyle" : "true",
-            \"DerivePointerAlignment" : "false",
-            \"FixNamespaceComments" : "true",
-            \"IncludeBlocks" : "Regroup",
-            \"IndentCaseLabels" : "false",
-            \"IndentPPDirectives" : "AfterHash",
-            \"IndentWidth" : 4,
-            \"IndentWrappedFunctionNames" : "false",
-            \"KeepEmptyLinesAtTheStartOfBlocks" : "false",
-            \"Language" : "Cpp",
-            \"NamespaceIndentation" : "All",
-            \"PointerAlignment" : "Left",
-            \"ReflowComments" : "true",
-            \"SortIncludes" : "true",
-            \"SortUsingDeclarations" : "false",
-            \"SpaceAfterCStyleCast" : "false",
-            \"SpaceAfterTemplateKeyword" : "true",
-            \"SpaceBeforeAssignmentOperators" : "true",
-            \"SpaceBeforeCpp11BracedList" : "false",
-            \"SpaceBeforeCtorInitializerColon" : "true",
-            \"SpaceBeforeParens" : "ControlStatements",
-            \"SpaceBeforeRangeBasedForLoopColon" : "true",
-            \"SpaceInEmptyParentheses" : "false",
-            \"SpacesBeforeTrailingComments" : 1,
-            \"SpacesInAngles" : "false",
-            \"SpacesInCStyleCastParentheses" : "false",
-            \"SpacesInContainerLiterals" : "false",
-            \"SpacesInParentheses" : "false",
-            \"SpacesInSquareBrackets" : "false",
-            \"TabWidth" : 4,
-            \"UseTab" : "Never"}
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "===================   SYNTASTIC ============================
@@ -110,12 +30,14 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "===================	StatusLine    =======================
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! InsertStatuslineColor(mode)
     "if a:mode == 'i'
-    " hi statusline guibg=Blue3 ctermfg=19 guifg=Black ctermbg=0
+        "hi statusline guibg=Blue3 ctermfg=19 guifg=Black ctermbg=0
     if a:mode == 'r'
         hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
     else
@@ -228,11 +150,53 @@ set expandtab
 set shiftwidth=4
 set smarttab
 set number
-highlight OverLength ctermbg=blue ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+"highlight OverLength ctermbg=blue ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pressing ,ss will toggle and untoggle spell checking
+"
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
+
+let g:SimpylFold_docstring_preview=1
+
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=200 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
+
+" match unnecessary withspaces
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+"
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+set showcmd
+
+
+" enable ycm to find stuff in venv
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+let python_highlight_all=1
+syntax on
+
+"allow to c/c from anywhere into vim"
+set clipboard=unnamed
