@@ -36,7 +36,7 @@ alias ls='ls --color=auto'
 alias ll='ls -l --color=auto'
 alias la='ls -a --color=auto'
 alias i3l=" i3lock -i '/home/nebon-_a/afs/nebon-_a/perso_config/865109.png'"
-
+alias back="cd /home/dridou/manadge/back/app/ssp/api"
 alias cpp='cd /home/nebon-_a/afs/2021/nebon-_a/s2'
 # Base16 Shell
 BASE16_SHELL="$AFS_DIR/.confs/base16-shell/"
