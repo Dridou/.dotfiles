@@ -1,19 +1,26 @@
-[core]
-    excludesfiles = ~/.gitignore
 [color]
-    ui = auto
-    branch = auto
-    diff = auto
-    interactive = auto
     status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
+    ui = true
+
+[user]
+	name = Adrien
+	email = adrien@manadge.co
+
+[alias]
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    undolast = reset --soft HEAD^
+
 [commit]
     verbose = true
+
 [pull]
     rebase = true
+
 [branch]
     autosetuprebase = always
-[push]
-    default = simple
-[user]
-    name = Adrien NEBON-CARLE
-    email = adrien.nebon-carle@epita.fr
+
+[core]
+    excludesfile = /home/dridou/.gitignore 
